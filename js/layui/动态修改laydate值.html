@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+     <div class="layui-form-item">
+        <label class="layui-form-label">日期范围</label>
+        <div class="layui-inline add_sign_record_time">
+          <div class="layui-inline" id="add_sign_record_time">
+            <div class="layui-input-inline">
+              <input type="text" autocomplete="off"  name="in_time" id="in_time" class="layui-input" placeholder="进入时间">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline">
+                <input type="text" autocomplete="off"  class="layui-input" name="out_time" id="out_time" required lay-verify="required" placeholder="离开时间">
+            </div>
+          </div>
+        </div>
+      </div>
+<script>
+      //日期范围
+       var laydateObj =  laydate.render({
+        elem: '#add_sign_record_time'
+        ,type: 'datetime'
+        ,format: 'yyyy-MM-dd HH:mm:ss'
+        ,range: ['#in_time', '#out_time']
+        ,done: function(value, date, endDate){
+            console.log(value.split(' - ')); //得到日期生成的值，如：2017-08-18
+            in_time = value.split(' - ')[0];
+            out_time = value.split(' - ')[1];
+          }
+      });
+
+       //  jquery动态修改值
+      $("#in_time").val(data.in_time);
+      $("#out_time").val(data.out_time);
+      laydateObj.config.value = data.in_time+ " - " + data.out_time;
+</script>
+</body>
+</html>
